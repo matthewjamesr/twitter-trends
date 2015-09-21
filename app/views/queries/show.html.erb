@@ -1,0 +1,32 @@
+<div class="row">
+  <h3 class="col-xs-12 col-md-10 col-md-offset-1">Showing results for:
+    <%= params[:query] %></h3>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-5 col-md-offset-1 list-group">
+    <h4>HashTags</h4>
+    <% @hashtags.each do |h| %>
+        <% h.hashtags.each do |object| %>
+          <% if object.text != nil %>
+            <li class='list-group-item'>
+              #<%= object.text.to_s %>
+            </li>
+          <% end %>
+        <% end %>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-5 col-md-offset-1 list-group">
+    <h4>@Mentions</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1 list-group">
+    <% @hashtags.each do |hashtag| %>
+      <li class='list-group-item'>
+        #<%= highlight(hashtag.text, params[:query]) %>
+      </li>
+    <% end %>
+  </div>
+</div>

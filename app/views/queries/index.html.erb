@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="jumbotron jumbo">
+    <h1>Welcome to Tweetin'</h1>
+    <div class="row">
+      <%= form_tag(results_path, method: "post", :class => "col-xs-12  col-md-6
+        col-md-offset-3") do %>
+        <h3>Enter your search below</h3>
+        <p>The recent 100 will be shown</p>
+        <div class="form-group">
+          <h4><%= label_tag(:query, "Search for:") %></h4>
+          <%= text_field_tag(:query, "", :placeholder => "A search query",
+            :class => "form-control") %>
+        </div>
+        <%= submit_tag("Search", :class => "btn btn-lg btn-primary submit") %>
+      <% end %>
+    </div>
+  </div>
+</div>

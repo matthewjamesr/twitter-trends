@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TwitterTrends</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <%= link_to "Tweentin'", root_path, :class => "navbar-brand" %>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Ooops!</strong> <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+
+  </div>
+
+</body>
+</html>
