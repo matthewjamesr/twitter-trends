@@ -10,7 +10,7 @@ class QueriesController < ApplicationController
     end
     
     if params[:query] != ""
-      query = API.makecall(params[:query])
+      query = API.makecall(params[:query], 500)
       
       @test = query
       

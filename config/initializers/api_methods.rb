@@ -7,8 +7,8 @@ module API
     config.access_token_secret = "8KLaJqVaQYQiPJUZ7OD67uhALNbFeE1NZdCLlMP6DbiLx"
   end
 
-  def self.makecall(query)
-    @api.search(query, result_type: "recent").take(1000).collect
+  def self.makecall(query, count)
+    @api.search(query, result_type: "recent").take(count).collect
   end
 
 end

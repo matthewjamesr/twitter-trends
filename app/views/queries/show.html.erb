@@ -20,22 +20,25 @@
     </div>
   </div>
   <div class="col-xs-12 col-sm-6 col-md-4 list-group">
-    <h4>HashTags</h4>
-    <% Hash[@hash.sort_by(&:last).reverse].each do |key, value| %>
-      <li class="list-group-item"><span class="badge alert-info"><%= value %></span> <%= key %></li>
+    <h4>Hashtags<span><%= link_to "View all", '', :class => 
+      "btn btn-default btn-sm view-more" %></span></h4>
+    <% Hash[@hash.sort_by(&:last).reverse.first(10)].each do |key, value| %>
+      <li class="list-group-item"><span class="label label-primary result-count"><%= value %></span> <%= key %></li>
     <% end %>
   </div>
   <div class="col-xs-12 col-sm-6 col-md-4 list-group">
-    <h4>@Mentions</h4>
-    <% Hash[@mentions.sort_by(&:last).reverse].each do |key, value| %>
-      <li class="list-group-item"><span class="badge alert-info"><%= value %></span> <%= key %></li>
+    <h4>Mentions<span><%= link_to "View all", '', :class => 
+      "btn btn-default btn-sm view-more" %></span></h4>
+    <% Hash[@mentions.sort_by(&:last).reverse.first(10)].each do |key, value| %>
+      <li class="list-group-item"><span class="label label-primary result-count" ><%= value %></span> 
+        <%= key %></li>
     <% end %>
   </div>
 </div>
 
 <div class="row">
   <div class="col-xs-12 list-group">
-    <% @test.each do |hashtag| %>
+    <% @test.first(10).each do |hashtag| %>
       <li class='list-group-item'>
         <%= highlight(hashtag.text, params[:query]) %>
       </li>
