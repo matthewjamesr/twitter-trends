@@ -14,8 +14,8 @@ class QueriesController < ApplicationController
       
       @test = query
       
-      @hashtags = hashtags(query)
-      @mentions = mentions(query)
+      hashtags(query)
+      mentions(query)
     end
   end
   
@@ -33,13 +33,11 @@ class QueriesController < ApplicationController
     @hash = {}
     data.each do |d|
       d.hashtags.each do |d|
-        if d.text != nil
-          name = d.text.to_s
-          if !@hash.has_key? name
-            @hash[name] = 0
-          end
-          @hash[name] = @hash[name] + 1
+        name = d.text.to_s
+        if !@hash.has_key? name
+          @hash[name] = 0
         end
+        @hash[name] = @hash[name] + 1
       end
     end
     return @hash
@@ -49,13 +47,11 @@ class QueriesController < ApplicationController
     @mentions = {}
     data.each do |d|
       d.user_mentions.each do |d|
-        if d.screen_name != nil
-          name = d.screen_name.to_s
-          if !@mentions.has_key? name
-            @mentions[name] = 0
-          end
-          @mentions[name] = @mentions[name] + 1
+        name = d.screen_name
+        if !@mentions.has_key? name
+          @mentions[name] = 0
         end
+        @mentions[name] = @mentions[name] + 1
       end
     end
     return @mentions

@@ -5,7 +5,7 @@
       <%= form_tag(results_path, method: "post", :class => "col-xs-12  col-md-6
         col-md-offset-3") do %>
         <h3>Enter your search below</h3>
-        <p>The recent 100 will be shown</p>
+        <p>Data from most recent 1000 status's will be shown.</p>
         <div class="form-group">
           <h4><%= label_tag(:query, "Search for:") %></h4>
           <%= text_field_tag(:query, "", :placeholder => "A search query",

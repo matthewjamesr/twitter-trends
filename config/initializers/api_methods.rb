@@ -8,7 +8,7 @@ module API
   end
 
   def self.makecall(query)
-    @api.search(query, result_type: "recent").take(100).collect
+    @api.search(query, result_type: "recent").take(1000).collect
   end
 
 end
