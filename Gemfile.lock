@@ -130,6 +130,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    mixpanel-ruby (2.2.0)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
     multi_json (1.11.2)
@@ -263,6 +264,7 @@ DEPENDENCIES
   launchy
   minitest
   minitest-reporters
+  mixpanel-ruby
   mocha
   pg
   poltergeist
