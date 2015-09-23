@@ -6,7 +6,7 @@ class QueriesController < ApplicationController
     time = Time.now.to_s
     time = DateTime.parse(time).strftime("%m/%d/%Y %H:%M")
 
-    Mixpanel.track(time, "Index Hit")
+    $tracker.track(time, "Index Hit")
   end
 
   def show
@@ -19,9 +19,9 @@ class QueriesController < ApplicationController
       time = Time.now.to_s
       time = DateTime.parse(time).strftime("%m/%d/%Y %H:%M")
 
-      Mixpanel.track(time, "Results Hit")
-      Mixpanel.track(params[:query], "Search Term", {
-        'Time' => time
+      $tracker.track(time, "Results Hit")
+      $tracker.track(params[:query], "Search Term", {
+        "Time" => time
       })
 
       query = API.makecall(params[:query], 500)
