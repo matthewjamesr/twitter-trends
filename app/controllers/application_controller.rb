@@ -10,5 +10,4 @@ class ApplicationController < ActionController::Base
 
   Mixpanel.track(time, "Visit")
 
-  p time
 end
