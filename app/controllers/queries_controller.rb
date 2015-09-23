@@ -20,6 +20,9 @@ class QueriesController < ApplicationController
       time = DateTime.parse(time).strftime("%m/%d/%Y %H:%M")
 
       Mixpanel.track(time, "Results Hit")
+      Mixpanel.track(params[:query], "Search Term", {
+        'Time' => time
+      })
 
       query = API.makecall(params[:query], 500)
 
