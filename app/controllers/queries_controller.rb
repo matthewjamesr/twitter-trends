@@ -1,6 +1,12 @@
 class QueriesController < ApplicationController
-  def index
 
+  require 'date'
+
+  def index
+    time = Time.now.to_s
+    time = DateTime.parse(time).strftime("%m/%d/%Y %H:%M")
+
+    Mixpanel.track(time, "Index Hit")
   end
 
   def show
@@ -8,17 +14,22 @@ class QueriesController < ApplicationController
       redirect_to root_path
       flash[:notice] = "You must enter a search term."
     end
-    
+
     if params[:query] != ""
+      time = Time.now.to_s
+      time = DateTime.parse(time).strftime("%m/%d/%Y %H:%M")
+
+      Mixpanel.track(time, "Results Hit")
+
       query = API.makecall(params[:query], 500)
-      
+
       @test = query
-      
+
       hashtags(query)
       mentions(query)
     end
   end
-  
+
   private
 
   def highlight(text, search_string)
@@ -42,7 +53,7 @@ class QueriesController < ApplicationController
     end
     return @hash
   end
-  
+
   def mentions(data)
     @mentions = {}
     data.each do |d|
