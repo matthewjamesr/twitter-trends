@@ -21,7 +21,8 @@ class QueriesController < ApplicationController
 
       $tracker.track(time, "Results Hit")
       $tracker.track(params[:query], "Search Term", {
-        "Time" => time
+        "Time" => time,
+        "Query" => params[:query]
       })
 
       query = API.makecall(params[:query], 500)
