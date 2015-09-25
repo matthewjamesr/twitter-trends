@@ -10,13 +10,27 @@
 
   <div class="container">
 
-    <div class="row">
-      <nav class="navbar navbar-default main-nav">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
         <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
           <%= link_to "Tweetin'", root_path, :class => "navbar-brand" %>
         </div>
-      </nav>
-    </div>
+        <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-3" aria-expanded="false" style="height: 1px;">
+          <% if !$current_user %>
+            <%= link_to "Signin", '/auth/twitter', :class => "btn btn-default navbar-btn" %>
+          <% else %>
+            <%= link_to "Profile", "", :class => "btn btn-default navbar-btn" %>
+            <%= link_to "Signout", '/logout', :class => "btn btn-default navbar-btn" %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
 
     <% if flash[:notice] %>
       <div class="alert alert-danger alert-dismissible clear" role="alert">
