@@ -16,6 +16,18 @@ class QueriesController < ApplicationController
     end
 
     if params[:query] != ""
+      search = Search.new
+      search.user_id = $current_user.id
+      search.query = params[:query]
+      search.save
+
+      query = API.makecall(params[:query], 500)
+
+      @test = query
+
+      hashtags(query)
+      mentions(query)
+
       time = Time.now.to_s
       time = DateTime.parse(time).strftime("%m/%d/%Y %H:%M")
 
@@ -24,13 +36,6 @@ class QueriesController < ApplicationController
         "Time" => time,
         "Query" => params[:query]
       })
-
-      query = API.makecall(params[:query], 500)
-
-      @test = query
-
-      hashtags(query)
-      mentions(query)
     end
   end
 

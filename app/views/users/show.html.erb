@@ -1,0 +1,58 @@
+<div class="row clear profile">
+  <% if @user.first_visit %>
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <div class="alert alert-warning" role="alert">Welcome! Since we are just
+         getting to know you, please fill out the info below.</div>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <h2>My Profile</h2>
+      <% if params[:errors] %>
+        <div class="alert alert-danger" role="alert">
+          <ul>
+            <%= params[:errors].full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <%= form_for @user do |f| %>
+          <div class="form-group col-xs-12">
+            <%= f.label :email %>
+            <%= f.email_field :email, :class => "form-control" %>
+          </div>
+          <div class="form-group col-xs-6">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, :class => "form-control" %>
+          </div>
+          <div class="form-group col-xs-6">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, :class => "form-control" %>
+          </div>
+          <div class="form-group col-xs-12 col-sm-6 col-sm-offset-3">
+            <%= f.hidden_field :first_visit, :value => false %>
+            <%= f.hidden_field :source, :value => "queries" %>
+            <%= f.submit :class => "btn btn-large btn-primary full-width" %>
+          </div>
+        <% end %>
+    </div>
+  <% else %>
+    <div class="col-xs-4 col-sm-6">
+      <%= image_tag @user.avatar, :class => "avatar" %>
+    </div>
+    <div class="col-xs-8 col-sm-6">
+      <h3><%= @user.first_name + ' ' + @user.last_name %></h3>
+      <h5><%= @user.email %></h5>
+    </div>
+    <div class="col-xs-8 col-sm-6">
+      <h4>Your popular queries</h4>
+    </div>
+    <ul class="col-xs-12 col-sm-6">
+      <% Hash[@query_hash.sort_by(&:last).reverse.first(10)].each do |key, value| %>
+      <li class="list-group-item"><span class="label label-primary result-count" ><%= value %></span>
+        <%= key %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

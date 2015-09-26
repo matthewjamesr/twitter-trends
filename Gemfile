@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 ruby "2.2.2"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'dotenv-rails', :groups => [:development, :test]
+
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
@@ -28,6 +30,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'twitter'
 
 gem 'mixpanel-ruby'
+
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-twitter', '~> 1.2.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
