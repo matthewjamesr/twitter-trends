@@ -7,6 +7,10 @@ class QueriesController < ApplicationController
     time = DateTime.parse(time).strftime("%m/%d/%Y %H:%M")
 
     $tracker.track(time, "Index Hit")
+
+    if $current_user
+      @user = User.find($current_user)
+    end
   end
 
   def show
