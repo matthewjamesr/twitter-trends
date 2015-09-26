@@ -1,8 +1,12 @@
 class SessionsController < ApplicationController
 
-  def create
-    @user = User.where(uid: auth_hash[:uid], provider: auth_hash[:provider]).first_or_create
+  def new
+    @user = User.new
+  end
 
+  def create
+    @user = User.find_or_create_from_auth_hash(auth_hash)
+    session[:user_id] = @user.id
     $current_user = @user
     redirect_to root_path
   end

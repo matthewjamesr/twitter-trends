@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150926184701) do
+ActiveRecord::Schema.define(version: 20150926225407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "searches", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "query"
+    t.integer "count",   default: 0
+  end
+
+  add_index "searches", ["user_id"], name: "index_searches_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                    null: false
@@ -27,6 +35,8 @@ ActiveRecord::Schema.define(version: 20150926184701) do
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "first_visit",    default: true
+    t.string   "avatar"
   end
 
+  add_foreign_key "searches", "users"
 end

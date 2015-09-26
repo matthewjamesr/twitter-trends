@@ -4,35 +4,37 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-12 col-md-4">
-    <h4>New Search</h4>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= form_tag(results_path, method: "post") do %>
-          <div class="form-group">
-            <h4><%= label_tag(:query, "Search for:") %></h4>
-            <%= text_field_tag(:query, "", :placeholder => "A search query",
-              :class => "form-control") %>
-          </div>
-          <%= submit_tag("Search", :class => "btn btn-lg btn-primary submit") %>
-        <% end %>
+  <div class="container-fluid">
+    <div class="col-xs-12 col-md-4">
+      <h4>New Search</h4>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= form_tag(results_path, method: "post") do %>
+            <div class="form-group">
+              <h4><%= label_tag(:query, "Search for:") %></h4>
+              <%= text_field_tag(:query, "", :placeholder => "A search query",
+                :class => "form-control") %>
+            </div>
+            <%= submit_tag("Search", :class => "btn btn-lg btn-primary submit") %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-xs-12 col-sm-6 col-md-4 list-group">
-    <h4>Hashtags<span><%= link_to "View all", '', :class => 
-      "btn btn-default btn-sm view-more" %></span></h4>
-    <% Hash[@hash.sort_by(&:last).reverse.first(10)].each do |key, value| %>
-      <li class="list-group-item"><span class="label label-primary result-count"><%= value %></span> <%= key %></li>
-    <% end %>
-  </div>
-  <div class="col-xs-12 col-sm-6 col-md-4 list-group">
-    <h4>Mentions<span><%= link_to "View all", '', :class => 
-      "btn btn-default btn-sm view-more" %></span></h4>
-    <% Hash[@mentions.sort_by(&:last).reverse.first(10)].each do |key, value| %>
-      <li class="list-group-item"><span class="label label-primary result-count" ><%= value %></span> 
-        <%= key %></li>
-    <% end %>
+    <div class="col-xs-12 col-sm-6 col-md-4 list-group">
+      <h4>Hashtags<span><%= link_to "View all", '', :class =>
+        "btn btn-default btn-sm view-more" %></span></h4>
+      <% Hash[@hash.sort_by(&:last).reverse.first(10)].each do |key, value| %>
+        <li class="list-group-item"><span class="label label-primary result-count"><%= value %></span> <%= key %></li>
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 list-group">
+      <h4>Mentions<span><%= link_to "View all", '', :class =>
+        "btn btn-default btn-sm view-more" %></span></h4>
+      <% Hash[@mentions.sort_by(&:last).reverse.first(10)].each do |key, value| %>
+        <li class="list-group-item"><span class="label label-primary result-count" ><%= value %></span>
+          <%= key %></li>
+      <% end %>
+    </div>
   </div>
 </div>
 
