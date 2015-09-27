@@ -12,8 +12,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = nil
-    $current_user = nil
+    if current_user
+      session.delete(:user_id)
+      flash[:success] = 'See you soon!'
+    end
     redirect_to root_path
   end
 
