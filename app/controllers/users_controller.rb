@@ -20,8 +20,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    if $current_user
-      if $current_user.id = params[:id]
+    if current_user
+      if current_user.id = params[:id]
         @user = User.find(params[:id])
         searches = Search.where(user_id: @user.id).find_each
 

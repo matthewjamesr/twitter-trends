@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'queries#index'
 
-  post  '/results' => 'queries#show'
+  get  '/results' => 'queries#show'
   get   '/results' => 'queries#index'
 
   get '/auth/:provider/callback' => 'users#create'

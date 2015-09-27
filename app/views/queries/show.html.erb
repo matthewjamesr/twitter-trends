@@ -1,6 +1,10 @@
 <div class="row" style="margin-top: 100px;">
   <h3 class="col-xs-12">Showing results for:
-    <%= params[:query] %></h3>
+    <%= params[:query] %>
+    <a href="/results?utf8=✓&query=<%= params[:query] %>&commit=Search">
+      <span class="glyphicon glyphicon-refresh btn btn-med btn-default" aria-hidden="true"></span>
+    </a>
+  </h3>
 </div>
 
 <div class="row">
@@ -9,7 +13,7 @@
       <h4>New Search</h4>
       <div class="panel panel-default">
         <div class="panel-body">
-          <%= form_tag(results_path, method: "post") do %>
+          <%= form_tag(results_path, method: "get") do %>
             <div class="form-group">
               <h4><%= label_tag(:query, "Search for:") %></h4>
               <%= text_field_tag(:query, "", :placeholder => "A search query",

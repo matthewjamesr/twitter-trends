@@ -17,7 +17,7 @@ class QueriesController < ApplicationController
 
     if params[:query] != ""
       search = Search.new
-      search.user_id = $current_user.id
+      search.user_id = current_user.id
       search.query = params[:query]
       search.save
 
