@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   has_many :searches
 
-  validates_format_of :email, :with => /@/
-  validates :first_name, length: { minimum: 3, message: "A name must be more than three letters" }
-  validates :last_name, length: { minimum: 3, message: "A name must be more than three letters" }
+  #validates_format_of :email, :with => /@/
+  #validates :first_name, length: { minimum: 3, message: "A name must be more than three letters" }
+  #validates :last_name, length: { minimum: 3, message: "A name must be more than three letters" }
 
   def self.find_or_create_from_auth_hash(auth_hash)
     user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
