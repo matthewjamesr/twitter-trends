@@ -14,7 +14,9 @@ class QueriesController < ApplicationController
       redirect_to root_path
       flash[:notice] = "You must enter a search term."
     else
-      search
+      if current_user
+        search
+      end
       query = API.makecall(params[:query], 500)
       @test = query
       hashtags(query)
