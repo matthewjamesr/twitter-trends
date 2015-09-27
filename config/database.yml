@@ -26,8 +26,7 @@ production:
   adapter: postgresql
   pool: 5
   timeout: 5000
-  host: ec2-204-236-226-63.compute-1.amazonaws.com
-  port: 5432
+  url: <%= ENV['DATABASE_URL'] %>
   database: d8shf1rt6kvsks
   username: exohqescsgdrtd
   password: ZmtHz-mmquB9V-Mh5-MFg3ucfm
