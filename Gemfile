@@ -67,3 +67,7 @@ group :test do
   gem "test_after_commit"
   gem "minitest"
 end
+
+group :production do
+  gem 'rails_12factor', '0.0.2'
+end
