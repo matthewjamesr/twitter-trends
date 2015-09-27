@@ -30,3 +30,26 @@
  .full-width {
    width: 100%;
  }
+
+ .link-query {
+   a {
+     padding: 0px;
+     border-radius: 0px;
+   }
+
+   a:link {
+     color: #000000;
+   }
+
+   a:visited {
+     color: #000000;
+   }
+
+   a:hover {
+     color: #000000;
+   }
+
+   a:active {
+     color: #000000;
+   }
+ }

@@ -24,19 +24,23 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-4 list-group">
+    <div class="col-xs-12 col-sm-6 col-md-4 list-group link-query">
       <h4>Hashtags<span><%= link_to "View all", '', :class =>
         "btn btn-default btn-sm view-more" %></span></h4>
       <% Hash[@hash.sort_by(&:last).reverse.first(10)].each do |key, value| %>
-        <li class="list-group-item"><span class="label label-primary result-count"><%= value %></span> <%= key %></li>
+        <a href="/results?utf8=✓&query=<%= key %>&commit=Search">
+          <li class="list-group-item"><span class="label label-primary result-count"><%= value %></span> <%= key %></li>
+        </a>
       <% end %>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-4 list-group">
+    <div class="col-xs-12 col-sm-6 col-md-4 list-group link-query">
       <h4>Mentions<span><%= link_to "View all", '', :class =>
         "btn btn-default btn-sm view-more" %></span></h4>
       <% Hash[@mentions.sort_by(&:last).reverse.first(10)].each do |key, value| %>
-        <li class="list-group-item"><span class="label label-primary result-count" ><%= value %></span>
-          <%= key %></li>
+        <a href="/results?utf8=✓&query=<%= key %>&commit=Search">
+          <li class="list-group-item"><span class="label label-primary result-count" ><%= value %></span>
+            <%= key %></li>
+        <a href="/results?utf8=✓&query=<%= key %>&commit=Search">
       <% end %>
     </div>
   </div>

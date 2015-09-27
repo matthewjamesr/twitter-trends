@@ -50,8 +50,11 @@
     </div>
     <ul class="col-xs-12 col-sm-6">
       <% Hash[@query_hash.sort_by(&:last).reverse.first(10)].each do |key, value| %>
-      <li class="list-group-item"><span class="label label-primary result-count" ><%= value %></span>
-        <%= key %></li>
+      <a class="top-query" href="/results?utf8=✓&query=<%= key %>&commit=Search">
+        <li class="list-group-item"><span class="label label-primary result-count" ><%= value %></span>
+          <%= key %>
+        </li>
+      </a>
       <% end %>
     </ul>
   <% end %>
