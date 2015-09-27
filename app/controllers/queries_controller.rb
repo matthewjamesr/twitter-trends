@@ -13,24 +13,15 @@ class QueriesController < ApplicationController
     if params[:query] == ""
       redirect_to root_path
       flash[:notice] = "You must enter a search term."
-    end
-
-    if params[:query] != ""
-      search = Search.new
-      search.user_id = current_user.id
-      search.query = params[:query]
-      search.save
-
+    else
+      search
       query = API.makecall(params[:query], 500)
-
       @test = query
-
       hashtags(query)
       mentions(query)
 
       time = Time.now.to_s
       time = DateTime.parse(time).strftime("%m/%d/%Y %H:%M")
-
       $tracker.track(time, "Results Hit")
       $tracker.track(params[:query], "Search Term", {
         "Time" => time,
@@ -40,6 +31,13 @@ class QueriesController < ApplicationController
   end
 
   private
+
+  def search
+    search = Search.new
+    search.user_id = current_user.id
+    search.query = params[:query]
+    search.save
+  end
 
   def highlight(text, search_string)
     keywords = search_string.squeeze.strip.split(" ").compact.uniq

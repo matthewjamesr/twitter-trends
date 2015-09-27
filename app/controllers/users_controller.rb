@@ -20,25 +20,20 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user
-      if current_user.id = params[:id]
-        @user = User.find(params[:id])
-        searches = Search.where(user_id: @user.id).find_each
+    if current_user.id = params[:id]
+      @user = User.find(params[:id])
+      searches = Search.where(user_id: @user.id).find_each
 
-        @query_hash = {}
-        searches.each do |s|
-          query = s.query
-          if !@query_hash.has_key? query
-            @query_hash[query] = 0
-          end
-          @query_hash[query] = @query_hash[query] + 1
+      @query_hash = {}
+      searches.each do |s|
+        query = s.query
+        if !@query_hash.has_key? query
+          @query_hash[query] = 0
         end
-
-      else
-        redirect_to root_path
+        @query_hash[query] = @query_hash[query] + 1
       end
     else
-      redirect_to root_path
+      redirect_to user_path
     end
   end
 
