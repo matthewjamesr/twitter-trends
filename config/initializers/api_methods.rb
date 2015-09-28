@@ -1,10 +1,10 @@
 module API
 
   @api = Twitter::REST::Client.new do |config|
-    config.consumer_key        = "SjyXYJDN7Yn43DtJhnWTBqpoC"
-    config.consumer_secret     = "pRzFXgjnjLEmnAu06m7Ppw3d71N8kvlVHIHoRth5Vsp15dE2he"
-    config.access_token        = "17275242-MgwXWRpiV3QcfyheT2dH5Kz8zlo36zcvEzmhnVb8T"
-    config.access_token_secret = "8KLaJqVaQYQiPJUZ7OD67uhALNbFeE1NZdCLlMP6DbiLx"
+    config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
+    config.consumer_secret     = ENV["TWITTER_CONSUMER_SECRET"]
+    config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
+    config.access_token_secret = ENV["TWITTER_ACCESS_TOKEN_SECRET"]
   end
 
   def self.makecall(query, count)

@@ -29,6 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Install twitter api gem.
 gem 'twitter'
 
+gem 'google-analytics-rails'
 gem 'mixpanel-ruby'
 
 gem 'omniauth', '~> 1.2.2'
