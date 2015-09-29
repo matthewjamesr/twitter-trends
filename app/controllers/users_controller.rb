@@ -34,7 +34,8 @@ class UsersController < ApplicationController
           @query_hash[query] = @query_hash[query] + 1
         end
       else
-        redirect_to user_path
+        flash[:info] = "Currently you may only visit your own profile."
+        redirect_to user_path(current_user)
       end
     else
       flash[:notice] = "You must be logged in to view that resource."
