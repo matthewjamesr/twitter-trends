@@ -35,7 +35,7 @@ class UsersController < ApplicationController
         end
       else
         flash[:info] = "Currently you may only visit your own profile."
-        redirect_to user_path(current_user)
+        redirect_to user_path(current_user.id)
       end
     else
       flash[:notice] = "You must be logged in to view that resource."
