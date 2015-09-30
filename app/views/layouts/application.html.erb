@@ -26,7 +26,7 @@
           <% if !current_user %>
             <%= link_to "Signin", '/auth/twitter', :class => "btn btn-default navbar-btn" %>
           <% else %>
-            <%= link_to "Profile", '/users/' + current_user.id.to_s, :class => "btn btn-default navbar-btn" %>
+            <%= link_to "Profile", current_user, :class => "btn btn-default navbar-btn" %>
             <%= link_to "Signout", '/logout', :class => "btn btn-default navbar-btn" %>
           <% end %>
         </div>
@@ -42,7 +42,7 @@
     <% if flash[:info] %>
       <div class="alert alert-info alert-dismissible clear" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Heads up:</strong> <%= flash[:notice] %>
+        <strong>Heads up:</strong> <%= flash[:info] %>
       </div>
     <% end %>
     <% if flash[:success] %>

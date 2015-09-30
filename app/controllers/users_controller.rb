@@ -21,9 +21,12 @@ class UsersController < ApplicationController
 
   def show
     if current_user
-      if current_user.id = params[:id]
-        @user = User.find(params[:id])
-        searches = Search.where(user_id: @user.id).find_each
+      if request.fullpath != user_path(current_user)
+        flash[:info] = "Currently you may only visit your own profile."
+        redirect_to current_user
+      else
+        @user = User.find(current_user)
+        searches = Search.where(user_id: current_user).find_each
 
         @query_hash = {}
         searches.each do |s|
@@ -33,9 +36,6 @@ class UsersController < ApplicationController
           end
           @query_hash[query] = @query_hash[query] + 1
         end
-      else
-        flash[:info] = "Currently you may only visit your own profile."
-        redirect_to "/users/" + current_user.id
       end
     else
       flash[:notice] = "You must be logged in to view that resource."
