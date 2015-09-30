@@ -35,6 +35,8 @@ gem 'mixpanel-ruby'
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-twitter', '~> 1.2.1'
 
+gem 'nprogress-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

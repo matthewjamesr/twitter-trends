@@ -14,4 +14,18 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require nprogress
+//= require nprogress-turbolinks
 //= require_tree .
+
+NProgress.configure({
+  showSpinner: true,
+  ease: 'ease',
+  speed: 500
+});
+
+$(document).ready(function() {
+    $('.submit').click(function() {
+      NProgress.start();
+    });
+});

@@ -148,6 +148,7 @@ GEM
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    nprogress-rails (0.1.6.7)
     oauth (0.4.7)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
@@ -289,6 +290,7 @@ DEPENDENCIES
   minitest-reporters
   mixpanel-ruby
   mocha
+  nprogress-rails
   omniauth (~> 1.2.2)
   omniauth-twitter (~> 1.2.1)
   pg
