@@ -26,16 +26,7 @@ class UsersController < ApplicationController
         redirect_to current_user
       else
         @user = User.find(current_user)
-        searches = Search.where(user_id: current_user).find_each
-
-        @query_hash = {}
-        searches.each do |s|
-          query = s.query
-          if !@query_hash.has_key? query
-            @query_hash[query] = 0
-          end
-          @query_hash[query] = @query_hash[query] + 1
-        end
+        get_search_stats
       end
     else
       flash[:notice] = "You must be logged in to view that resource."
@@ -56,6 +47,19 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :first_visit)
+  end
+
+  def get_search_stats
+    searches = Search.where(user_id: current_user).find_each
+
+    @query_hash = {}
+    searches.each do |s|
+      query = s.query
+      if !@query_hash.has_key? query
+        @query_hash[query] = 0
+      end
+      @query_hash[query] = @query_hash[query] + 1
+    end
   end
 
   protected
