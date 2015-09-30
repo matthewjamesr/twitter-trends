@@ -2,11 +2,11 @@ class QueriesController < ApplicationController
 
   require 'date'
 
-  def index
-    time = Time.now.to_s
-    time = DateTime.parse(time).strftime("%m/%d/%Y %H:%M")
+  time = Time.now.to_s
+  @time = DateTime.parse(time).strftime("%m/%d/%Y %H:%M")
 
-    $tracker.track(time, "Index Hit")
+  def index
+    $tracker.track(@time, "Index Hit")
   end
 
   def show
@@ -14,19 +14,15 @@ class QueriesController < ApplicationController
       redirect_to root_path
       flash[:notice] = "You must enter a search term."
     else
-      if current_user
-        search
-      end
+      log_search
       query = API.makecall(params[:query], 500)
       @test = query
       hashtags(query)
       mentions(query)
 
-      time = Time.now.to_s
-      time = DateTime.parse(time).strftime("%m/%d/%Y %H:%M")
-      $tracker.track(time, "Results Hit")
+      $tracker.track(@time, "Results Hit")
       $tracker.track(params[:query], "Search Term", {
-        "Time" => time,
+        "Time" => @time,
         "Query" => params[:query]
       })
     end
@@ -34,11 +30,13 @@ class QueriesController < ApplicationController
 
   private
 
-  def search
-    search = Search.new
-    search.user_id = current_user.id
-    search.query = params[:query]
-    search.save
+  def log_search
+    if current_user
+      search = Search.new
+      search.user_id = current_user.id
+      search.query = params[:query]
+      search.save
+    end
   end
 
   def highlight(text, search_string)
