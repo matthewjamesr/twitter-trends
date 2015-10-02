@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
+//= require leaflet
 //= require_tree .
 
 NProgress.configure({

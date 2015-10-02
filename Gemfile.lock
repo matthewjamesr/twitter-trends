@@ -116,6 +116,7 @@ GEM
     json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
+    leaflet-rails (0.7.4)
     listen (3.0.3)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -286,6 +287,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
+  leaflet-rails
   minitest
   minitest-reporters
   mixpanel-ruby

@@ -15,10 +15,11 @@ class QueriesController < ApplicationController
       flash[:notice] = "You must enter a search term."
     else
       log_search
-      query = API.makecall(params[:query], 500)
+      query = API.makecall(params[:query], 1000)
       @test = query
       hashtags(query)
       mentions(query)
+      geocords(query)
 
       $tracker.track(@time, "Results Hit")
       $tracker.track(params[:query], "Search Term", {
@@ -45,6 +46,33 @@ class QueriesController < ApplicationController
     highlighted = text.gsub(matcher) { |match| "#{match}" }
 
     return highlighted
+  end
+
+  def geocords(data)
+    @geo = {}
+    @coords = ""
+    @place = {}
+
+    data.each do |d|
+      if d.geo?
+        if !@geo.has_key? d.place.bounding_box.coordinates
+          @geo[d.place.bounding_box.coordinates] = 0
+          geo = d.place.bounding_box.coordinates
+          @coords = @coords + "{\n"
+          4.times do |x|
+            @coords = @coords + ":latlng => [" + geo[0][x][0].to_s + ", " + geo[0][x][1].to_s + "],\n"
+          end
+          @coords = @coords + "},\n"
+        end
+        @geo[d.place.bounding_box.coordinates] = @geo[d.place.bounding_box.coordinates] + 1
+      end
+      if d.place?
+        if !@place.has_key? d.place.full_name
+          @place[d.place.full_name] = 0
+        end
+        @place[d.place.full_name] = @place[d.place.full_name] + 1
+      end
+    end
   end
 
   def hashtags(data)

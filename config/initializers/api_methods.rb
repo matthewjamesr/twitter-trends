@@ -11,4 +11,8 @@ module API
     @api.search(query, result_type: "recent").take(count).collect
   end
 
+  def self.get_location(id)
+    @api.status(id)
+  end
+
 end
