@@ -16,6 +16,11 @@
   }
 }
 
+#search-panel {
+  display: none;
+  z-index: +1;
+}
+
 .result-count {
   margin-right: 10px;
 }
@@ -27,4 +32,44 @@
 .results-map {
   height: 300px;
   width: 100%;
+}
+
+.avatar {
+  width: 100%;
+  height: (100% / 6);
+}
+
+.refresh {
+
+}
+
+// Printer-friendly view
+@media print {
+  #search-panel {
+    display: none;
+  }
+
+  .refresh {
+    display: none;
+  }
+
+  .one-panel {
+    max-width: 97%;
+  }
+
+  .two-panel {
+    max-width: 50%;
+    a[href]:after {
+      content: none !important;
+      // use important only if you are not able to override it by normal styling
+    }
+  }
+
+  .three-panel {
+    max-width: 33.3%;
+    a[href]:after {
+      content: none !important;
+      // use important only if you are not able to override it by normal styling
+    }
+  }
 }

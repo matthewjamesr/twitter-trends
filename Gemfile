@@ -37,6 +37,9 @@ gem 'omniauth-twitter', '~> 1.2.1'
 
 gem 'nprogress-rails'
 gem 'leaflet-rails'
+gem 'chartkick'
+gem 'groupdate'
+gem 'active_median'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

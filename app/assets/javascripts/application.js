@@ -26,7 +26,17 @@ NProgress.configure({
 });
 
 $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+
     $('.submit').click(function() {
       NProgress.start();
+    });
+
+    $('.print').click(function() {
+      window.print();
+    });
+
+    $('.repeat').click(function() {
+      $('#search-panel').toggle();
     });
 });

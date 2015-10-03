@@ -20,6 +20,7 @@ class QueriesController < ApplicationController
       hashtags(query)
       mentions(query)
       geocords(query)
+      countries(query)
 
       $tracker.track(@time, "Results Hit")
       $tracker.track(params[:query], "Search Term", {
@@ -59,8 +60,8 @@ class QueriesController < ApplicationController
           @geo[d.place.bounding_box.coordinates] = 0
           geo = d.place.bounding_box.coordinates
           @coords = @coords + "{\n"
-          4.times do |x|
-            @coords = @coords + ":latlng => [" + geo[0][x][0].to_s + ", " + geo[0][x][1].to_s + "],\n"
+          3.times do |x|
+            @coords = @coords + ":latlng => " + geo[0][x][0].to_s + ", " + geo[0][x][1].to_s + ",\n"
           end
           @coords = @coords + "},\n"
         end
@@ -71,6 +72,19 @@ class QueriesController < ApplicationController
           @place[d.place.full_name] = 0
         end
         @place[d.place.full_name] = @place[d.place.full_name] + 1
+      end
+    end
+  end
+
+  def countries(data)
+    @countries = {}
+    data.each do |d|
+      if d.place.country
+        name = d.place.country
+        if !@countries.has_key? name
+          @countries[name] = 0
+        end
+        @countries[name] = @countries[name] + 1
       end
     end
   end
