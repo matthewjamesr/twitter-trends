@@ -51,7 +51,8 @@ class QueriesController < ApplicationController
 
   def geocords(data)
     @geo = {}
-    @coords = ""
+    @coords = []
+    @points = []
     @place = {}
 
     data.each do |d|
@@ -59,11 +60,8 @@ class QueriesController < ApplicationController
         if !@geo.has_key? d.place.bounding_box.coordinates
           @geo[d.place.bounding_box.coordinates] = 0
           geo = d.place.bounding_box.coordinates
-          @coords = @coords + "{\n"
-          3.times do |x|
-            @coords = @coords + ":latlng => " + geo[0][x][0].to_s + ", " + geo[0][x][1].to_s + ",\n"
-          end
-          @coords = @coords + "},\n"
+          @coords << geo
+          @points = 4.times.map{|x| { latlng: @coords[0][0][x] } }
         end
         @geo[d.place.bounding_box.coordinates] = @geo[d.place.bounding_box.coordinates] + 1
       end

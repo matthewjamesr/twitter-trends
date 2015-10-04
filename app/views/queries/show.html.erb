@@ -55,15 +55,8 @@
           },
           :markers => [
             {
-              :latlng => ["30", "-40"]
-            },
-            {
-              :latlng => ["10", "-40"]
-            }
-          ],
-          :polygons => [
-            {
-              :latlngs => [["10", "10"],["50", "10"],["50", "-50"],["10", "-50"]]
+              :latlng => [-40, 30],
+              #:latlng => @coords[0][0][0],
             }
           ]
         )
@@ -129,6 +122,9 @@
             <div class="col-xs-8 col-sm-9">
               <h4><%= hashtag.user.name + " (@" + hashtag.user.screen_name + ")" %>:</h4>
               <%= highlight(hashtag.text, params[:query]) %><br />
+              <% hashtag.media.each do |m| %>
+                <img class="col-xs-12 img-thumbnail embedded-media" src="<%= m.media_url %>"></img>
+              <% end %><br />
               <h5><small><%= hashtag.created_at %></small></h5>
             </div>
           </div>
