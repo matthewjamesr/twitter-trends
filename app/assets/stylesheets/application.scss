@@ -10,14 +10,38 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *= require skel
  *= require_self
  *= require nprogress
  *= require nprogress-bootstrap
  *= require leaflet
  */
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ .brand {
+   a:link {
+     color: #FFF;
+     text-decoration: none;
+   }
+
+   a:visited {
+     color: #FFF;
+     text-decoration: none;
+   }
+
+   a:hover {
+     color: #FFF;
+     text-decoration: none;
+   }
+
+   a:active {
+     color: #FFF;
+     text-decoration: none;
+   }
+ }
 
  mark {
    background-color: yellow;
@@ -28,6 +52,11 @@
 
  .clear {
   margin-top: 75px;
+ }
+
+ .reset {
+   margin: 0px;
+   padding: 0px;
  }
 
  .full-width {

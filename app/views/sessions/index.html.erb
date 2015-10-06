@@ -1,0 +1,145 @@
+<body class="landing">
+
+  <div class="container-fluid" style="padding: 0px;">
+
+    <!-- Header -->
+      <header id="header">
+        <h1 class="brand"><%= link_to "Dailyhash", root_path %></h1>
+        <nav id="nav">
+          <ul>
+            <li><%= link_to "Home", root_path %></li>
+            <% if !current_user %>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Pricing</a></li>
+              <li><%= link_to "Sign in", "/auth/twitter", :class => "button special"%></li>
+            <% else %>
+              <li><%= link_to "Profile", user_path(current_user) %></li>
+              <li><a>Settings</a></li>
+              <li><%= link_to "Sign out", "/logout", :class => "button special" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </header>
+
+    <!-- Banner -->
+      <section id="banner">
+        <h2>Hi. This is Dailyhash.</h2>
+        <p>Next-generation law enforcement information powered by social analytics.</p>
+        <ul class="actions">
+          <li>
+            <%= link_to "Let's get started", "/auth/twitter", :class => "button big" %>
+          </li>
+        </ul>
+      </section>
+
+    <!-- One -->
+      <section id="one" class="wrapper style1 special">
+        <div class="container">
+          <header class="major">
+            <h2>Dailyhash Provides a Complete Information Picture of the Social Environment</h2>
+            <p>Through innovative technologies to better enable law enforcement agencies</p>
+          </header>
+          <div class="row 150%">
+            <div class="4u 12u$(medium)">
+              <section class="box">
+                <i class="icon big rounded color1 fa-cloud"></i>
+                <h3>Cloud Enabled</h3>
+                <p>Setup information queries, be alerted to trigures, access from anywhere, all safe and secure</p>
+              </section>
+            </div>
+            <div class="4u 12u$(medium)">
+              <section class="box">
+                <i class="icon big rounded color9 fa-desktop"></i>
+                <h3>Common Operating Picture</h3>
+                <p>Enabling information fusion, awareness, and dissemination through command, control, communication (C3)</p>
+              </section>
+            </div>
+            <div class="4u$ 12u$(medium)">
+              <section class="box">
+                <i class="icon big rounded color6 fa-rocket"></i>
+                <h3>High-paced Feature Development</h3>
+                <p>Always integerating with customers to better represent ever changing data needs.</p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- Two -->
+      <section id="two" class="wrapper style2 special">
+        <div class="container">
+          <header class="major">
+            <h2>Our customers have a lot to say.</h2>
+            <p>Dailyhash provides law enforcement agencies with simgle to use, effective, and streamlined access to critical social-environmental information</p>
+          </header>
+          <!-- <section class="profiles">
+            <div class="row">
+              <section class="3u 6u(medium) 12u$(xsmall) profile">
+                <img src="images/profile_placeholder.gif" alt="" />
+                <h4>Lorem ipsum</h4>
+                <p>Lorem ipsum dolor</p>
+              </section>
+              <section class="3u 6u$(medium) 12u$(xsmall) profile">
+                <img src="images/profile_placeholder.gif" alt="" />
+                <h4>Voluptatem dolores</h4>
+                <p>Ullam nihil repudi</p>
+              </section>
+              <section class="3u 6u(medium) 12u$(xsmall) profile">
+                <img src="images/profile_placeholder.gif" alt="" />
+                <h4>Doloremque quo</h4>
+                <p>Harum corrupti quia</p>
+              </section>
+              <section class="3u$ 6u$(medium) 12u$(xsmall) profile">
+                <img src="images/profile_placeholder.gif" alt="" />
+                <h4>Voluptatem dicta</h4>
+                <p>Et natus sapiente</p>
+              </section>
+            </div>
+          </section> -->
+          <footer>
+            <p>Real success in the information domain is met with affecting a change and increasing knowledge</p>
+            <ul class="actions">
+              <li>
+                <a href="#" class="button big">Share Your Dailyhash Story</a>
+              </li>
+            </ul>
+          </footer>
+        </div>
+      </section>
+
+    <!-- Three -->
+      <section id="three" class="wrapper style3 special">
+        <div class="container">
+          <header class="major">
+            <h2>Request Information</h2>
+            <p>Dailyhash helps agencies of all sizes and budgets increase their social-information gathering, proccessing, and disseminating capabilities
+              through proactive relationships and specialized training.</p>
+          </header>
+        </div>
+        <div class="container 50%">
+          <form action="#" method="post">
+            <div class="row uniform">
+              <div class="6u 12u$(small)">
+                <input name="name" id="name" value="" placeholder="Name" type="text">
+              </div>
+              <div class="6u$ 12u$(small)">
+                <input name="email" id="email" value="" placeholder="Email" type="email">
+              </div>
+              <div class="12u$">
+                <textarea name="message" id="message" placeholder="Message" rows="6"></textarea>
+              </div>
+              <div class="12u$">
+                <ul class="actions">
+                  <li><input value="Send Message" class="special big" type="submit"></li>
+                </ul>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    <%= render "layouts/app_footer" %>
+
+    </div>
+
+</body>

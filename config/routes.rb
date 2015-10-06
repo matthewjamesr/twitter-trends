@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'queries#index'
+  root 'sessions#index'
 
   get  '/results' => 'queries#show'
   get   '/results' => 'queries#index'

@@ -1,135 +1,143 @@
-<div class="row" style="margin-top: 100px;">
-  <div class="col-xs-12">
-    <h2>Showing results for:
-      <%= params[:query] %>
-      <span class="glyphicon glyphicon-repeat btn btn-med btn-default icon repeat"
-        aria-hidden="true" data-toggle="tooltip" data-placement="top" title="New Search"></span>
-      <a href="/results?utf8=✓&query=<%= params[:query] %>&commit=Search">
-        <span class="glyphicon glyphicon-refresh btn btn-med btn-default icon"
-          aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Refresh"></span>
-      </a>
-      <span class="glyphicon glyphicon-print btn btn-med btn-default icon print"
-        aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Print"></span>
-    </h2>
-  </div>
-  <div class="col-xs-12 one-panel">
-    <div class="panel panel-default" id="search-panel">
-      <div class="panel-body">
-        <%= form_tag(results_path, method: "get") do %>
-          <div class="form-group">
-            <h4><%= label_tag(:query, "Search for:") %></h4>
-            <%= text_field_tag(:query, "", :placeholder => "A search query",
-              :class => "form-control") %>
-          </div>
-          <%= submit_tag("Search", :class => "btn btn-lg btn-primary submit") %>
-        <% end %>
+<%= render "layouts/app_header" %>
+
+<div class="container 12u">
+
+  <div class="row" style="margin-top: 40px;">
+    <div class="12u$">
+      <h2>Showing results for:
+        <%= params[:query] %>
+        <i class="fa-repeat btn btn-med btn-default icon repeat"
+          aria-hidden="true" data-toggle="tooltip" data-placement="top" title="New Search"></i>
+        <a href="/results?utf8=✓&query=<%= params[:query] %>&commit=Search">
+          <i class="fa fa-refresh btn btn-med btn-default icon"
+            aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Refresh"></i>
+        </a>
+        <i class="fa fa-print btn btn-med btn-default icon print"
+          aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Print"></i>
+      </h2>
+    </div>
+    <div class="12u one-panel">
+      <div class="panel panel-default" id="search-panel" style="display: none;">
+        <div class="panel-body">
+          <%= form_tag(results_path, method: "get") do %>
+            <div class="form-group">
+              <h4><%= label_tag(:query, "Search for:") %></h4>
+              <%= text_field_tag(:query, "", :placeholder => "A search query",
+                :class => "form-control") %>
+            </div>
+            <%= submit_tag("Search", :class => "btn btn-lg btn-primary submit") %>
+          <% end %>
+        </div>
       </div>
-    </div>
-    <h3>Heatmap</h3>
-    <div class="panel panel-default">
-      <%= geo_chart(@countries,
-          :library => {
-             :legend => 'none'
-          })
-      %>
-    </div>
-  </div>
-  <div class="col-xs-12 col-sm-6 two-panel">
-    <h3>Trending</h3>
-    <div class="panel panel-default">
-      <%= pie_chart(@hash.sort_by(&:last).reverse.first(10),
-          :library => {
-             :legend => 'none'
-          })
-      %>
-    </div>
-  </div>
-  <div class="col-xs-12 col-sm-6 two-panel">
-    <h3>Map <small>beta</small></h3>
-    <div class="panel panel-default">
-      <div class="results-map" id="map">
-        <%=
-        map(:center => {
-            :latlng => ["51.52238797921441", "-0.08366235665359283"],
-            :zoom => 1
-          },
-          :markers => [
-            {
-              :latlng => [-40, 30],
-              #:latlng => @coords[0][0][0],
-            }
-          ]
-        )
+      <h3>Heatmap</h3>
+      <div class="panel panel-default">
+        <%= geo_chart(@countries,
+            :library => {
+               :legend => 'none'
+            })
         %>
       </div>
     </div>
-  </div>
-</div>
-<div class="row" style="margin-top: 15px;">
-  <div class="container-fluid">
-    <div class="col-xs-12 col-sm-4 list-group link-query three-panel">
-      <h3>Places<span><%= link_to "View all", '', :class =>
-        "btn btn-default btn-sm view-more" %></span></h3>
-      <% Hash[@place.sort_by(&:last).reverse.first(10)].each do |key, value| %>
-        <a href="/results?utf8=✓&query=<%= key %>&commit=Search">
-          <li class="list-group-item"><span class="label label-primary result-count">
-            <%= value %></span> <%= key %></li>
-        </a>
-      <% end %>
+    <div class="col-xs-12 col-sm-6 two-panel">
+      <h3>Trending</h3>
+      <div class="panel panel-default">
+        <%= pie_chart(@hash.sort_by(&:last).reverse.first(10),
+            :library => {
+               :legend => 'none'
+            })
+        %>
+      </div>
     </div>
-    <div class="col-xs-12 col-sm-4 list-group link-query three-panel">
-      <h3>Hashtags<span><%= link_to "View all", '', :class =>
-        "btn btn-default btn-sm view-more" %></span></h3>
-      <% Hash[@hash.sort_by(&:last).reverse.first(10)].each do |key, value| %>
-        <a href="/results?utf8=✓&query=<%= key %>&commit=Search">
-          <li class="list-group-item"><span class="label label-primary result-count"><%= value %></span> <%= key %></li>
-        </a>
-      <% end %>
-    </div>
-    <div class="col-xs-12 col-sm-4 list-group link-query three-panel">
-      <h3>Mentions<span><%= link_to "View all", '', :class =>
-        "btn btn-default btn-sm view-more" %></span></h3>
-      <% Hash[@mentions.sort_by(&:last).reverse.first(10)].each do |key, value| %>
-        <a href="/results?utf8=✓&query=<%= key %>&commit=Search">
-          <li class="list-group-item"><span class="label label-primary result-count" ><%= value %></span>
-            <%= key %></li>
-        </a>
-      <% end %>
+    <div class="col-xs-12 col-sm-6 two-panel">
+      <h3>Map <small>beta</small></h3>
+      <div class="panel panel-default">
+        <div class="results-map" id="map" style="height: 300px;">
+          <%=
+          map(:center => {
+              :latlng => ["51.52238797921441", "-0.08366235665359283"],
+              :zoom => 1
+            },
+            :markers => [
+              {
+                :latlng => [-40, 30],
+                #:latlng => @coords[0][0][0],
+              }
+            ]
+          )
+          %>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class='container-fluid'>
-    <div class="col-xs-12 col-sm-4 list-group link-query two-panel">
-      <h3>Geocoords<span><%= link_to "View all", '', :class =>
-        "btn btn-default btn-sm view-more" %></span></h3>
-      <% Hash[@geo.sort_by(&:last).reverse.first(10)].each do |key, value| %>
-        <a href="/results?utf8=✓&query=<%= key %>&commit=Search">
-          <li class="list-group-item"><span class="label label-primary result-count">
-            <%= value %></span> <%= key[0] %></li>
-        </a>
-      <% end %>
+  <div class="row" style="margin-top: 15px;">
+    <div class="container-fluid 12u">
+      <div class="col-xs-12 col-sm-4 list-group link-query three-panel">
+        <h3>Places<span><%= link_to "View all", '', :class =>
+          "btn btn-default btn-sm view-more" %></span></h3>
+        <% Hash[@place.sort_by(&:last).reverse.first(10)].each do |key, value| %>
+          <a href="/results?utf8=✓&query=<%= key %>&commit=Search">
+            <li class="list-group-item"><span class="label label-primary result-count">
+              <%= value %></span> <%= key %></li>
+          </a>
+        <% end %>
+      </div>
+      <div class="col-xs-12 col-sm-4 list-group link-query three-panel">
+        <h3>Hashtags<span><%= link_to "View all", '', :class =>
+          "btn btn-default btn-sm view-more" %></span></h3>
+        <% Hash[@hash.sort_by(&:last).reverse.first(10)].each do |key, value| %>
+          <a href="/results?utf8=✓&query=<%= key %>&commit=Search">
+            <li class="list-group-item"><span class="label label-primary result-count"><%= value %></span> <%= key %></li>
+          </a>
+        <% end %>
+      </div>
+      <div class="col-xs-12 col-sm-4 list-group link-query three-panel">
+        <h3>Mentions<span><%= link_to "View all", '', :class =>
+          "btn btn-default btn-sm view-more" %></span></h3>
+        <% Hash[@mentions.sort_by(&:last).reverse.first(10)].each do |key, value| %>
+          <a href="/results?utf8=✓&query=<%= key %>&commit=Search">
+            <li class="list-group-item"><span class="label label-primary result-count" ><%= value %></span>
+              <%= key %></li>
+          </a>
+        <% end %>
+      </div>
     </div>
-    <div class="col-xs-12 col-sm-8 list-group link-query two-panel">
-      <h3>Updates<span><%= link_to "View all", '', :class =>
-        "btn btn-default btn-sm view-more" %></span></h3>
-      <% @test.first(10).each do |hashtag| %>
-        <li class='list-group-item'>
-          <div class="row">
-            <div class="col-xs-4 col-sm-3">
-              <img class="avatar" src="<%= hashtag.user.profile_image_url_https %>" />
+  </div>
+  <div class="row">
+    <div class='container-fluid 12u'>
+      <div class="col-xs-12 col-sm-4 list-group link-query two-panel">
+        <h3>Geocoords<span><%= link_to "View all", '', :class =>
+          "btn btn-default btn-sm view-more" %></span></h3>
+        <% Hash[@geo.sort_by(&:last).reverse.first(10)].each do |key, value| %>
+          <a href="/results?utf8=✓&query=<%= key %>&commit=Search">
+            <li class="list-group-item"><span class="label label-primary result-count">
+              <%= value %></span> <%= key[0] %></li>
+          </a>
+        <% end %>
+      </div>
+      <div class="col-xs-12 col-sm-8 list-group link-query two-panel">
+        <h3>Updates<span><%= link_to "View all", '', :class =>
+          "btn btn-default btn-sm view-more" %></span></h3>
+        <% @test.first(10).each do |hashtag| %>
+          <li class='list-group-item'>
+            <div class="row">
+              <div class="col-xs-4 col-sm-3">
+                <img class="avatar" src="<%= hashtag.user.profile_image_url_https %>" style="width: 100%;" />
+              </div>
+              <div class="col-xs-8 col-sm-9">
+                <h4><%= hashtag.user.name + " (@" + hashtag.user.screen_name + ")" %>:</h4>
+                <%= highlight(hashtag.text, params[:query]) %><br />
+                <% hashtag.media.each do |m| %>
+                  <img class="col-xs-12 img-thumbnail embedded-media" src="<%= m.media_url %>"></img>
+                <% end %><br />
+                <h5><small><%= hashtag.created_at %></small></h5>
+              </div>
             </div>
-            <div class="col-xs-8 col-sm-9">
-              <h4><%= hashtag.user.name + " (@" + hashtag.user.screen_name + ")" %>:</h4>
-              <%= highlight(hashtag.text, params[:query]) %><br />
-              <% hashtag.media.each do |m| %>
-                <img class="col-xs-12 img-thumbnail embedded-media" src="<%= m.media_url %>"></img>
-              <% end %><br />
-              <h5><small><%= hashtag.created_at %></small></h5>
-            </div>
-          </div>
-        </li>
-      <% end %>
+          </li>
+        <% end %>
+      </div>
     </div>
   </div>
+
 </div>
+
+<%= render "layouts/app_footer" %>

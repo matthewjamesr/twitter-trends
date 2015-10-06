@@ -12,11 +12,16 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+//= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
 //= require leaflet
+//= require skel.min
+//= require skel-layers.min
+//= require init
+//= require html5shiv
 //= require_tree .
 
 NProgress.configure({

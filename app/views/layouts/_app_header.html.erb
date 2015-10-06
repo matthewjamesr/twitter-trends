@@ -1,0 +1,22 @@
+<body>
+  <div class="container-fluid" style="padding: 0px;">
+    <div class="row">
+      <!-- Header -->
+      <header class="col-xs-12" id="header">
+        <h1 class="brand"><%= link_to "Dailyhash", root_path %></h1>
+        <nav id="nav">
+          <ul>
+            <li><%= link_to "Home", root_path %></li>
+            <% if !current_user %>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Pricing</a></li>
+              <li><%= link_to "Sign in", "/auth/twitter", :class => "button special"%></li>
+            <% else %>
+              <li><%= link_to "Profile", user_path(current_user) %></li>
+              <li><a>Settings</a></li>
+              <li><%= link_to "Sign out", "/logout", :class => "button special" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </header>
+    </div>

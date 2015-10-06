@@ -5,57 +5,19 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+  <%= javascript_include_tag "jquery.min" %>
+  <%= javascript_include_tag "bootstrap.min" %>
+  <%= javascript_include_tag "skel.min" %>
+  <%= javascript_include_tag "skel-layers.min" %>
+  <noscript>
+    <%= stylesheet_link_tag 'skel' %>
+    <%= stylesheet_link_tag 'style' %>
+    <%= stylesheet_link_tag 'style-xlarge' %>
+  </noscript
   <%= csrf_meta_tags %>
   <%= analytics_init if Rails.env.production? %>
 </head>
-<body>
 
-  <div class="container">
+<%= yield %>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to "Tweetin'", root_path, :class => "navbar-brand" %>
-        </div>
-        <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-3" aria-expanded="false" style="height: 1px;">
-          <% if !current_user %>
-            <%= link_to "Signin", '/auth/twitter', :class => "btn btn-default navbar-btn" %>
-          <% else %>
-            <%= link_to "Profile", current_user, :class => "btn btn-default navbar-btn" %>
-            <%= link_to "Signout", '/logout', :class => "btn btn-default navbar-btn" %>
-          <% end %>
-        </div>
-      </div>
-    </nav>
-
-    <% if flash[:notice] %>
-      <div class="alert alert-danger alert-dismissible clear" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Ooops!</strong> <%= flash[:notice] %>
-      </div>
-    <% end %>
-    <% if flash[:info] %>
-      <div class="alert alert-info alert-dismissible clear" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Heads up:</strong> <%= flash[:info] %>
-      </div>
-    <% end %>
-    <% if flash[:success] %>
-      <div class="alert alert-success alert-dismissible clear" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Success:</strong> <%= flash[:success] %>
-      </div>
-    <% end %>
-
-    <%= yield %>
-
-  </div>
-
-</body>
 </html>
