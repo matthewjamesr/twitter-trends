@@ -36,7 +36,7 @@
 
 .avatar {
   width: 100%;
-  height: (100% / 6);
+  height: (100% / 4);
 }
 
 .embedded-media {
@@ -62,7 +62,7 @@
   }
 
   .two-panel {
-    max-width: 50%;
+    max-width: 45%;
     a[href]:after {
       content: none !important;
       // use important only if you are not able to override it by normal styling
@@ -70,7 +70,7 @@
   }
 
   .three-panel {
-    max-width: 33.3%;
+    max-width: 30%;
     a[href]:after {
       content: none !important;
       // use important only if you are not able to override it by normal styling
