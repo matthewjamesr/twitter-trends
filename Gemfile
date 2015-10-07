@@ -32,6 +32,7 @@ gem 'twitter'
 
 gem 'google-analytics-rails'
 gem 'mixpanel-ruby'
+gem 'castle-rb'
 
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-twitter', '~> 1.2.1'

@@ -22,6 +22,8 @@ class QueriesController < ApplicationController
       geocords(query)
       countries(query)
 
+      @user = User.find(current_user)
+
       $tracker.track(@time, "Results Hit")
       $tracker.track(params[:query], "Search Term", {
         "Time" => @time,
