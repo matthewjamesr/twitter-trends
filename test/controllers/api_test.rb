@@ -11,12 +11,4 @@ class ApiTest < ActiveSupport::TestCase
     assert_not_nil(API.makecall(query, 1), msg = "API did not recieve a query")
   end
 
-  def test_that_api_returns_500_tweets
-    @times = 0
-    API.makecall("news", 500).each do |r|
-      @times = @times + 1
-    end
-    assert_equal 500, @times, "Did not return 500 tweets"
-  end
-
 end
